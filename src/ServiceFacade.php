@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Support;
+namespace Viviniko\Support;
 
 abstract class ServiceFacade
 {
