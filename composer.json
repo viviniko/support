@@ -17,11 +17,14 @@
         "illuminate/support": "~5.0",
         "illuminate/database": "~5.0"
     },
-	"autoload": {
+    "autoload": {
         "psr-0": {
             "Viviniko\\Support": "src"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "minimum-stability": "dev",
-	"prefer-stable": true
+    "prefer-stable": true
 }
