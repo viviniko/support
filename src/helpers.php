@@ -18,6 +18,19 @@ if (!function_exists('price_format')) {
     }
 }
 
+if (! function_exists('theme_asset')) {
+    /**
+     * Generate an theme asset path for the application.
+     *
+     * @param  string  $path
+     * @param  bool    $secure
+     * @return string
+     */
+    function theme_asset($path, $secure = null) {
+        return app('theme')->getAssetUrl($path, $secure);
+    }
+}
+
 if (!function_exists('build_tree')) {
     /**
      * Build tree.
@@ -37,5 +50,32 @@ if (!function_exists('build_tree')) {
             })->filter(function($item) use ($parentId, $parentKey) {
                 return $item->{$parentKey} == $parentId;
             })->values();
+    }
+}
+
+if (!function_exists('flatten_tree')) {
+    /**
+     * Build tree.
+     *
+     * @param $tree
+     * @param $column
+     * @param $key
+     * @param $depth
+     * @return array
+     */
+    function flatten_tree(Collection $tree, $column = 'name', $key = 'id', $depth = 0) {
+        $items = [];
+        // $icons = ['├', '└', '│', '─'];
+        $space = '──';
+
+        // $count = count($tree);
+        foreach ($tree as $index => $node) {
+            $items[$node->{$key}] = str_repeat($space, $depth) . $node->{$column};
+            if (!empty($node->children)) {
+                $items += flatten_tree($node->children, $column, $key, $depth + 1);
+            }
+        }
+
+        return $items;
     }
 }
