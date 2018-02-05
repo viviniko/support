@@ -2,7 +2,7 @@
 
 namespace Viviniko\Support\Event;
 
-class Subscriber
+class EventSubscriber
 {
     protected $handlers = [];
 
