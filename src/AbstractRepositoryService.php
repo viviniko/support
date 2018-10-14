@@ -41,6 +41,18 @@ abstract class AbstractRepositoryService
     }
 
     /**
+     * list data by key => name.
+     *
+     * @param $name
+     * @param string $key
+     * @return \Illuminate\Support\Collection
+     */
+    public function lists($name, $key = 'id')
+    {
+        return $this->getRepository()->pluck($name, $key);
+    }
+
+    /**
      * Dynamically call.
      *
      * @param  string  $method
